@@ -61,18 +61,19 @@ Body{
 .btn:hover {
     background-color: #4CAF50;
     color: white;
-    border: 4px solid #f39417;
+    border: 2px solid #f39417;
 
 }
 .btn:enabled{
-    background-color: #ec3c24cb;
-    color: whitesmoke;
-    border: 2px solid #471f04cc;
+    background-color: #81ee85be;
+    color: rgb(71, 70, 70);
+    /* border: 2px solid #042147cc; */
+    border: 2px solid #4CAF50;
 }
 .btn:enabled:hover{
-    background-color: #eeba2aef;
-    color:black;
-    border: 3px solid #33120a;
+    background-color: #941212ec;
+    color:white;
+    border: 4px solid #e09090d8;
     transition-duration: 0.1s;
 }
 #buttons{
