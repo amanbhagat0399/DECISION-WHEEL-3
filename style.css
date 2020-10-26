@@ -7,6 +7,7 @@ Body{
 }
 /*-------------------------------------------------------------------------------------- */
 #headerarea{
+    margin-top: 0%;
     background-color: black;
     color: aliceblue;
     text-align: center;
@@ -94,11 +95,12 @@ Body{
 .content , h3{
     display: inline-block;
     margin: 1% 0.5%;
+    overflow: auto;
 }
 
 .out{
     background-color: rgba(248, 247, 244, 0.849);
-    margin: 10px;
+    margin: 6px;
     border-radius: 4px;
 }
 h3{
@@ -106,9 +108,13 @@ h3{
     
 }
 .content{
-    font-size: 1rem;
-    font-weight: 550;
-    font-style: italic;
+    display: inline-block;
+    font-size: 1.1rem;
+    font-weight: 500;
+    max-width: 75%;
+    min-height: 18px;
+    max-height: 25px;
+    overflow: auto;
 }
 #previewviewarea{
     width: 100%;
@@ -265,21 +271,32 @@ h3{
     margin: 5px;
 }
 
-
-
 #iDecision{
     margin-top: 30px;
     margin-bottom: 100px;
 }
 #a{
-    background-color: #bb3c3cdc; /* Green */
+    background-color: #bb3c3cdc;
     border: 2px solid rgb(116, 1, 1);
     color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 18px;
+    font-size: 15px;
     cursor: pointer;
     border-radius: 6px;margin-left: 1PX;
+}
+
+#generate{
+    background-color: #bb3c3cdc;
+    border: 2px solid  rgb(116, 1, 1);
+    border-radius: 4px;
+    color: white;
+}
+#generate:disabled{
+    background-color: #8f7979ad;
+    border: 2px solid  rgb(19, 13, 13);
+    border-radius: 4px;
+    color:black;
 }
 }
