@@ -30,6 +30,12 @@ function enable_next_button(flag) {
     var next_button_id = 'b'.concat(next_button_string);
     document.getElementById(next_button_id).disabled = false;
 }
+function disable_current_button(flag){
+    var b_id = flag ;
+    var b_id_string = b_id.toString();
+    var current_button_id = 'b'.concat(b_id_string);
+    document.getElementById(current_button_id).disabled = true;
+}
 // -------------------------------------------------------------------------------------------
 var activeView = "tree";
 function toggleDataEntryView() {
@@ -88,6 +94,12 @@ function collectresponse(btn) {
         document.getElementById("InputPreviousBtn").disabled = true;
     }
 
+    if(flag==8){
+        document.getElementById("iResponse").style.display="none";
+        document.getElementById("iDecision").style.display="block";
+        dropchoices()
+    }
+
     // Set fields of data entry window
     var x = document.getElementById("iQuestion").innerHTML = question;
 
@@ -98,7 +110,11 @@ function collectresponse(btn) {
 function SubmitInput() {
     var ans1 = document.getElementById("iResponse").value;
     var ans = ans1.trim();
+    if (flag==8){
+        ans="submit"
+    }
     if (ans.length == 0 || ans.charAt(0) == " ") {
+
         alert("you have not entered anything.");
     }
     else {
@@ -109,6 +125,7 @@ function SubmitInput() {
         if (flag == 1) {
             myobj.problem = ans;
             document.getElementById("p1").innerHTML = myobj.problem;
+            disable_current_button(flag);
         }
         else if (flag == 2) {
             var ans1 = document.getElementById("iResponse").value;
@@ -126,6 +143,7 @@ function SubmitInput() {
                 };
             }
             document.getElementById("generate").disabled = false;
+            disable_current_button(flag);
         }
         else if (flag == 3) {
             var ans1 = document.getElementById("iResponse").value;
@@ -134,6 +152,7 @@ function SubmitInput() {
             console.log(temp_consequences);
             myobj.choices[linkindex].choice = myobj.choicearray[linkindex - 1]
             myobj.choices[linkindex].consequences = temp_consequences;
+            disable_current_button(flag);
         }
         else if (flag == 4) {
             var ans1 = document.getElementById("iResponse").value;
@@ -141,6 +160,7 @@ function SubmitInput() {
             temp_value= ans.split("\n");
             console.log(temp_value);
             myobj.choices[linkindex].values = temp_value;
+            disable_current_button(flag);
         }
         else if (flag == 5) {
             var ans1 = document.getElementById("iResponse").value;
@@ -149,22 +169,33 @@ function SubmitInput() {
             console.log(temp_feeling);
             myobj.choices[linkindex].feeling = temp_feeling;
             InputConfig[flag - 1].linkedto == 0;
+            disable_current_button(flag);
         }
         else if (flag == 6) {
             myobj.moreinfo = ans;
             document.getElementById("p6").innerHTML = myobj.moreinfo;
+            disable_current_button(flag);
         }
         else if (flag == 7) {
             myobj.whocanhelp = ans;
             document.getElementById("p7").innerHTML = myobj.whocanhelp;
+            disable_current_button(flag);
         }
         else if (flag == 8) {
-            myobj.decision = ans;
+            var x = document.getElementById("change_chart1");
+            // console.log(x.options)
+            // document.getElementById("p8").innerHTML = x.value;
+            myobj.decision = x.value;
             document.getElementById("p8").innerHTML = myobj.decision;
+            document.getElementById("iResponse").style.display="block";
+            // document.getElementById("iResponse").style.textAlign="center";
+            document.getElementById("iDecision").style.display="none";
+            disable_current_button(flag);
         }
         else if (flag == 9) {
             myobj.assessdecisison = ans;
             document.getElementById("p9").innerHTML = myobj.assessdecisison;
+            disable_current_button(flag);
         }
 
         document.getElementById("iResponse").value = '';
@@ -323,52 +354,19 @@ function ShowNext() {
 
 // -------------------------------------------------------------------------------------------
 
-// function ShowNext() {
-//     var ans1 = document.getElementById("iResponse").value;
-//     var ans = ans1.trim();
-
-//     if (flag == 3) {
-//         if (linkindex == (temp_choice.length - 1)) {
-//             document.getElementById("InputNextBtn").disabled = true;
-//             document.getElementById("s4").disabled = false;
-//         }
-//         temp_consequences.push(ans)
-//         myobj.choices[linkindex].choice = myobj.choicearray[linkindex - 1]
-//         myobj.choices[linkindex].consequences = temp_consequences;
-//         temp_consequences = [];
-//         document.getElementById("iResponse").value = "";
-//         printchoice()
-//     }
-//     else if (flag == 4) {
-//         if (linkindex == (temp_choice.length - 1)) {
-//             document.getElementById("InputNextBtn").disabled = true;
-//             document.getElementById("s4").disabled = false;
-//         }
-//         temp_value.push(ans)
-//         myobj.choices[linkindex].values = temp_value;
-//         temp_value = [];
-//         document.getElementById("iResponse").value = "";
-//         printchoice()
-//     }
-//     else if (flag == 5) {
-//         if (linkindex == (temp_choice.length - 1)) {
-//             document.getElementById("InputNextBtn").disabled = true;
-//             document.getElementById("s4").disabled = false;
-//         }
-//         temp_feeling = document.getElementById("iResponse").value;
-//         myobj.choices[linkindex].feeling = temp_feeling;
-//         document.getElementById("iResponse").value = "";
-//         printchoice()
-//     }
-// }
-
 function dropchoices() {
 
     var values = myobj.choicearray;
 
     var select = document.createElement("select");
     select.name = "pets";
-    select.id = "change_chart";
+    if(flag==8){
+        select.id = "change_chart1";
+    }
+    else{
+        select.id = "change_chart";
+    }
+   
     for (const val of values) {
         var option = document.createElement("option");
         option.value = val;
@@ -378,9 +376,13 @@ function dropchoices() {
     var label = document.createElement("label");
 
     label.htmlFor = "pets";
-
+    if (flag==8){
+        document.getElementById("iDecision").appendChild(label).appendChild(select);
+    }
+    else{
     document.getElementById("z").appendChild(label).appendChild(select);
     document.getElementById('generate').disabled = true;
+    }
 
 }
 var show = 0

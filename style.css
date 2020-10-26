@@ -30,15 +30,17 @@ Body{
     margin: 6px;
     box-sizing: border-box;
     border-radius: 6px;
+    margin-left: 10px;
 }
 #viewarea{
     float: right;
-    width: 76.5%;
+    width: 75%;
     height:87%;
     background-color: rgba(230, 125, 125, 0.842);
     text-align: center;
-    margin: 6.5px;
+    margin: 6px;
     border-radius: 6px;
+    margin-right: 10px;
 }
 /*-------------------------------------------------------------------------------------- */
 .btn {
@@ -59,6 +61,19 @@ Body{
 .btn:hover {
     background-color: #4CAF50;
     color: white;
+    border: 4px solid #f39417;
+
+}
+.btn:enabled{
+    background-color: #ec3c24cb;
+    color: whitesmoke;
+    border: 2px solid #471f04cc;
+}
+.btn:enabled:hover{
+    background-color: #eeba2aef;
+    color:black;
+    border: 3px solid #33120a;
+    transition-duration: 0.1s;
 }
 #buttons{
     align-items: center;
@@ -128,15 +143,18 @@ h3{
 #iResponse{
     font-size: 30px;
     background-color: rgba(243, 209, 209, 0.877);
-    width: 75%;
+
     margin: 50px;
     border: 3px solid rgb(153, 14, 14);
-    height: 100%;
     padding: 20px;
+    max-width: 75%;
+    min-width: 75%;
+    min-height: 180px;
     max-height: 180px;
+    /* max-height: 180px
     min-height: 180px;
     max-width: 750px;
-    min-width:750px;
+    min-width:750px; */
 }
 #InputNewBtn{
   background-color: #bb3c3cdc; /* Green */
@@ -244,6 +262,13 @@ h3{
 
 .ibtn{
     margin: 5px;
+}
+
+
+
+#iDecision{
+    margin-top: 30px;
+    margin-bottom: 100px;
 }
 #a{
     background-color: #bb3c3cdc; /* Green */
