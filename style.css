@@ -37,11 +37,15 @@ Body{
     float: right;
     width: 75%;
     height:87%;
+    max-height: 90%;
     background-color: rgba(230, 125, 125, 0.842);
     text-align: center;
     margin: 6px;
     border-radius: 6px;
     margin-right: 10px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
 }
 /*-------------------------------------------------------------------------------------- */
 .btn {
@@ -90,46 +94,39 @@ Body{
     font-size: 2rem;
     border-radius: 5px 60px;
 }
-/*---------------------------------------------------------------------------------------- */
+/*-------------------------------------------------------------------------------------*/
+
 
 .content , h3{
     display: inline-block;
-    margin: 0.5% 0.5%;
-    /* overflow: auto; */
-
-
+    margin: 1% 0.5%;
 }
 
 .out{
     background-color: rgba(248, 247, 244, 0.849);
-    margin: 5px;
+    margin: 9px;
     border-radius: 4px;
-
 }
 h3{
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     
 }
 .content{
-    display: inline-block;
-    font-size: 1.1rem;
-    font-weight: 500;
-    overflow-y: auto;
-    max-width: 75%;
-    min-height: 28px;
-    max-height: 30px;
-    
-
-
+    font-size: 1.2rem;
+    font-weight: 535;
+    font-style: italic;
 }
 #previewviewarea{
     width: 100%;
+    max-height: 100vh;
 }
 
 
 .editbutton{
     float: right;
 }
+
+
 /*----------------------------------------------------------------------------------------*/
 
 #iQuestion{

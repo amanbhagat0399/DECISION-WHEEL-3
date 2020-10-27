@@ -30,8 +30,8 @@ function enable_next_button(flag) {
     var next_button_id = 'b'.concat(next_button_string);
     document.getElementById(next_button_id).disabled = false;
 }
-function disable_current_button(flag){
-    var b_id = flag ;
+function disable_current_button(flag) {
+    var b_id = flag;
     var b_id_string = b_id.toString();
     var current_button_id = 'b'.concat(b_id_string);
     document.getElementById(current_button_id).disabled = true;
@@ -73,7 +73,7 @@ function collectresponse(btn) {
             document.getElementById("InputRemoveBtn").disabled = true;
         }
         linkindex = 0;
-        document.getElementById("InputNewBtn").disabled=true;
+        document.getElementById("InputNewBtn").disabled = true;
         document.getElementById("InputNextBtn").disabled = false;
         document.getElementById("InputPreviousBtn").disabled = true;
         document.getElementById("s4").disabled = true;
@@ -94,9 +94,9 @@ function collectresponse(btn) {
         document.getElementById("InputPreviousBtn").disabled = true;
     }
 
-    if(flag==8){
-        document.getElementById("iResponse").style.display="none";
-        document.getElementById("iDecision").style.display="block";
+    if (flag == 8) {
+        document.getElementById("iResponse").style.display = "none";
+        document.getElementById("iDecision").style.display = "block";
         dropchoices()
     }
 
@@ -110,8 +110,8 @@ function collectresponse(btn) {
 function SubmitInput() {
     var ans1 = document.getElementById("iResponse").value;
     var ans = ans1.trim();
-    if (flag==8){
-        ans="submit"
+    if (flag == 8) {
+        ans = "submit"
     }
     if (ans.length == 0 || ans.charAt(0) == " ") {
 
@@ -130,7 +130,7 @@ function SubmitInput() {
         else if (flag == 2) {
             var ans1 = document.getElementById("iResponse").value;
             var ans = ans1.trim();
-            temp_choice[choice_counter]= ans;
+            temp_choice[choice_counter] = ans;
             myobj.choicearray = temp_choice;
             console.log(choice_counter);
             for (var j = 1; j <= myobj.choicearray.length; j++) {
@@ -148,7 +148,7 @@ function SubmitInput() {
         else if (flag == 3) {
             var ans1 = document.getElementById("iResponse").value;
             var ans = ans1.trim();
-            temp_consequences= ans.split("\n");
+            temp_consequences = ans.split("\n");
             console.log(temp_consequences);
             myobj.choices[linkindex].choice = myobj.choicearray[linkindex - 1]
             myobj.choices[linkindex].consequences = temp_consequences;
@@ -157,7 +157,7 @@ function SubmitInput() {
         else if (flag == 4) {
             var ans1 = document.getElementById("iResponse").value;
             var ans = ans1.trim();
-            temp_value= ans.split("\n");
+            temp_value = ans.split("\n");
             console.log(temp_value);
             myobj.choices[linkindex].values = temp_value;
             disable_current_button(flag);
@@ -165,7 +165,7 @@ function SubmitInput() {
         else if (flag == 5) {
             var ans1 = document.getElementById("iResponse").value;
             var ans = ans1.trim();
-            temp_feeling= ans.split("\n");
+            temp_feeling = ans.split("\n");
             console.log(temp_feeling);
             myobj.choices[linkindex].feeling = temp_feeling;
             InputConfig[flag - 1].linkedto == 0;
@@ -187,9 +187,9 @@ function SubmitInput() {
             // document.getElementById("p8").innerHTML = x.value;
             myobj.decision = x.value;
             document.getElementById("p8").innerHTML = myobj.decision;
-            document.getElementById("iResponse").style.display="block";
+            document.getElementById("iResponse").style.display = "block";
             // document.getElementById("iResponse").style.textAlign="center";
-            document.getElementById("iDecision").style.display="none";
+            document.getElementById("iDecision").style.display = "none";
             disable_current_button(flag);
         }
         else if (flag == 9) {
@@ -201,9 +201,9 @@ function SubmitInput() {
         document.getElementById("iResponse").value = '';
     }
 }
-var feel_counter=0;
-var value_counter=0;
-var cons_counter=0;
+var feel_counter = 0;
+var value_counter = 0;
+var cons_counter = 0;
 var choice_counter = 0;
 var temp_choice = [];
 var temp_value = [];
@@ -226,7 +226,7 @@ function AddNew() {
     }
     else if (flag == 3 && ans.length != 0) {
         console.log(ans);
-        var sp= ans.split("\n");
+        var sp = ans.split("\n");
         console.log(sp);
         temp_consequences.push(ans)
         document.getElementById("iResponse").value = ''
@@ -259,9 +259,9 @@ function ShowPrevious() {
         //         console.log(choice_counter)
         //     }
         // }
-        else{
+        else {
             alert("you haven't entered anything")
-        } 
+        }
     }
 
 }
@@ -287,25 +287,25 @@ function ShowNext() {
         //         console.log(choice_counter)
         //     }
         // }
-        else{
+        else {
             alert("you haven't entered anything")
-        } 
+        }
     }
-    if (flag==3){
-        if(ans.length !=0){
-            if(cons_counter<myobj.choicearray.length-1){
-                temp_consequences= ans.split("\n");
+    if (flag == 3) {
+        if (ans.length != 0) {
+            if (cons_counter < myobj.choicearray.length - 1) {
+                temp_consequences = ans.split("\n");
                 console.log(temp_consequences);
                 myobj.choices[linkindex].choice = myobj.choicearray[linkindex - 1]
                 myobj.choices[linkindex].consequences = temp_consequences;
                 temp_consequences = [];
                 document.getElementById("iResponse").value = "";
                 printchoice()
-                cons_counter+=1;
+                cons_counter += 1;
             }
-            if(cons_counter==myobj.choicearray.length-1){
-                document.getElementById("InputNextBtn").disabled=true;
-                document.getElementById("s4").disabled=false;
+            if (cons_counter == myobj.choicearray.length - 1) {
+                document.getElementById("InputNextBtn").disabled = true;
+                document.getElementById("s4").disabled = false;
             }
             // if(cons_counter>0){
             //     document.getElementById("InputPreviousBtn").disabled=false;
@@ -313,40 +313,38 @@ function ShowNext() {
         }
 
     }
-    if (flag==4){
-        if(ans.length !=0){
-            if(value_counter<myobj.choicearray.length-1){
-                temp_value= ans.split("\n");
+    if (flag == 4) {
+        if (ans.length != 0) {
+            if (value_counter < myobj.choicearray.length - 1) {
+                temp_value = ans.split("\n");
                 console.log(temp_value);
                 myobj.choices[linkindex].values = temp_value;
                 temp_value = [];
                 document.getElementById("iResponse").value = "";
                 printchoice();
-                value_counter+=1;
+                value_counter += 1;
             }
-            if(value_counter==myobj.choicearray.length-1)
-            {
-                document.getElementById("InputNextBtn").disabled=true;
-                document.getElementById("s4").disabled=false;
+            if (value_counter == myobj.choicearray.length - 1) {
+                document.getElementById("InputNextBtn").disabled = true;
+                document.getElementById("s4").disabled = false;
             }
         }
     }
 
-    if (flag==5){
-        if(ans.length !=0){
-            if(feel_counter<myobj.choicearray.length-1){
-                temp_feeling= ans.split("\n");
+    if (flag == 5) {
+        if (ans.length != 0) {
+            if (feel_counter < myobj.choicearray.length - 1) {
+                temp_feeling = ans.split("\n");
                 console.log(temp_feeling);
                 myobj.choices[linkindex].feeling = temp_feeling;
                 temp_feeling = [];
                 document.getElementById("iResponse").value = "";
                 printchoice();
-                feel_counter+=1;
+                feel_counter += 1;
             }
-            if(feel_counter==myobj.choicearray.length-1)
-            {
-                document.getElementById("InputNextBtn").disabled=true;
-                document.getElementById("s4").disabled=false;
+            if (feel_counter == myobj.choicearray.length - 1) {
+                document.getElementById("InputNextBtn").disabled = true;
+                document.getElementById("s4").disabled = false;
             }
         }
     }
@@ -360,13 +358,13 @@ function dropchoices() {
 
     var select = document.createElement("select");
     select.name = "pets";
-    if(flag==8){
+    if (flag == 8) {
         select.id = "change_chart1";
     }
-    else{
+    else {
         select.id = "change_chart";
     }
-   
+
     for (const val of values) {
         var option = document.createElement("option");
         option.value = val;
@@ -376,12 +374,12 @@ function dropchoices() {
     var label = document.createElement("label");
 
     label.htmlFor = "pets";
-    if (flag==8){
+    if (flag == 8) {
         document.getElementById("iDecision").appendChild(label).appendChild(select);
     }
-    else{
-    document.getElementById("z").appendChild(label).appendChild(select);
-    document.getElementById('generate').disabled = true;
+    else {
+        document.getElementById("z").appendChild(label).appendChild(select);
+        document.getElementById('generate').disabled = true;
     }
 
 }
