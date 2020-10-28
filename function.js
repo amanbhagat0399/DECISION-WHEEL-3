@@ -62,10 +62,10 @@ function printchoice() {
     }
 }
 // -------------------------------------------------------------------------------------------
-function collectresponse(btn) {
-    var button_id = btn.id;
-    flag = parseInt(button_id.charAt(1));
-    var qno = parseInt(button_id.charAt(1)) - 1;
+var edit_word;
+
+function collect_response(flag) {
+    var qno = flag - 1;
     var question = InputConfig[qno].question;
     if (InputConfig[flag - 1].linkedto == 1) {
         if (InputConfig[flag - 1].multiple == false) {
@@ -106,20 +106,48 @@ function collectresponse(btn) {
     // Toggle the view
     toggleDataEntryView();
 }
+function collectresponse(btn) {
+    var button_id = btn.id;
+    flag = parseInt(button_id.charAt(1));
+    edit_word = "original";
+    collect_response(flag);
+}
 
+function edit_response(btn) {
+    var button_id = btn.id;
+    flag = parseInt(button_id.charAt(1));
+    edit_word = "edit";
+    if (flag == 2 || flag ==3 ||flag==4) {
+        feel_counter = 0;
+        value_counter = 0;
+        cons_counter = 0;
+        choice_counter = 0;
+        temp_choice = [];
+        temp_value = [];
+        temp_consequences = [];
+        temp_feeling = '';
+    }
+    collect_response(flag)
+}
 function SubmitInput() {
+    if (edit_word === "original") {
+        SubmitInput1();
+        enable_next_button(flag);
+    }
+    else if (edit_word === "edit") {
+            SubmitInput1();
+    }
+}
+function SubmitInput1() {
     var ans1 = document.getElementById("iResponse").value;
     var ans = ans1.trim();
     if (flag == 8) {
         ans = "submit"
     }
     if (ans.length == 0 || ans.charAt(0) == " ") {
-
         alert("you have not entered anything.");
     }
     else {
-
-        enable_next_button(flag);
         // Toggle the view
         toggleDataEntryView();
         if (flag == 1) {
@@ -144,6 +172,7 @@ function SubmitInput() {
             }
             document.getElementById("generate").disabled = false;
             disable_current_button(flag);
+            enable_next_button(flag);
         }
         else if (flag == 3) {
             var ans1 = document.getElementById("iResponse").value;
@@ -153,6 +182,7 @@ function SubmitInput() {
             myobj.choices[linkindex].choice = myobj.choicearray[linkindex - 1]
             myobj.choices[linkindex].consequences = temp_consequences;
             disable_current_button(flag);
+            enable_next_button(flag);
         }
         else if (flag == 4) {
             var ans1 = document.getElementById("iResponse").value;
@@ -161,6 +191,7 @@ function SubmitInput() {
             console.log(temp_value);
             myobj.choices[linkindex].values = temp_value;
             disable_current_button(flag);
+            enable_next_button(flag);
         }
         else if (flag == 5) {
             var ans1 = document.getElementById("iResponse").value;
@@ -170,6 +201,7 @@ function SubmitInput() {
             myobj.choices[linkindex].feeling = temp_feeling;
             InputConfig[flag - 1].linkedto == 0;
             disable_current_button(flag);
+            enable_next_button(flag);
         }
         else if (flag == 6) {
             myobj.moreinfo = ans;
@@ -355,7 +387,6 @@ function ShowNext() {
 function dropchoices() {
 
     var values = myobj.choicearray;
-
     var select = document.createElement("select");
     select.name = "pets";
     if (flag == 8) {
@@ -364,7 +395,6 @@ function dropchoices() {
     else {
         select.id = "change_chart";
     }
-
     for (const val of values) {
         var option = document.createElement("option");
         option.value = val;
@@ -381,7 +411,6 @@ function dropchoices() {
         document.getElementById("z").appendChild(label).appendChild(select);
         document.getElementById('generate').disabled = true;
     }
-
 }
 var show = 0
 function selectchoice() {
